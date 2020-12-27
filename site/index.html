@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="pure-min.css">
+    </head>
+    <body>
+        <form class="pure-form" style='padding: 10px; background-color: rgb(224,224,224);'>
+            <label for=url>Download from uptobox : </label>
+            <input id=url size =50 type=text onkeyup="msgdiv.innerHTML = ''" onpaste="msgdiv.innerHTML = ''">
+            <button id=button onclick="download()" class="pure-button pure-button-primary" >Download</button> 
+            <div id=message></div>
+        </form>
+        <h3 style="text-align: center;">Current downloads</h3>
+        <table class="pure-table pure-table-horizontal" style="width: 100%;">
+            <thead>
+                <tr><td>progress</td><td>rate</td><td>left</td><td>loaded</td><td>size</td><td>del</td><td>filename</td><td>url</td> </tr>
+            </thead>
+            <tbody id=files></tbody>
+        </table>
+        <script>
+            const urlbutton = document.getElementById('button')
+            const urlinput = document.getElementById('url')
+            const filesul = document.getElementById('files')
+            const msgdiv = document.getElementById('message')
+            const empty = `<tr><td colspan=8  style="text-align: center;" >Nothing loading actually</td></tr>`
+            filesul.innerHTML = empty
+            function download() {
+                msgdiv.innerHTML = ''
+                urlbutton.disabled = true
+                const url = urlinput.value
+                fetch('/download/file', {
+                    method: 'post',
+                    body: JSON.stringify({ url }),
+                    headers: { 'Content-type': 'application/json' }
+                }).then(response => {
+                    if (!response.ok) throw `Unable submit download for "${url}"`
+                    return response.json()
+                }).then(json => {
+                    if (json.error) throw json.message
+                    msgdiv.innerHTML = `file submitted`
+                    urlbutton.disabled = false
+                    refresh()
+                }).catch(msg => {
+                    msgdiv.innerHTML = msg
+                    urlbutton.disabled = false
+                })
+            }
+            function remove(url) {
+                const id = url.replace(/^https?:.*\//,'')
+                fetch(`/download/file/${id}`, {
+                    method: 'delete'
+                }).then(response => {
+                    if (!response.ok) refresh()
+                    msgdiv.innerHTML = 'removed'
+                }).catch(msg => {
+                    msgdiv.innerHTML = msg
+                })
+            }
+            function reset() {
+                msgdiv.innerHTML = ''
+                return false
+            }
+            function refresh() {
+                fetch('/download/file').then(response => {
+                    if (!response.ok) throw `Unable refresh file list status=${response.status}`
+                    return response.json()
+                }).then(datas => {
+                    if (datas.length === 0) {
+                        filesul.innerHTML= empty
+                    } else {
+                        const lines = datas.map(item => `
+                        <tr>
+                            <td><progress max="100" value="${Math.abs(item.loaded*100/item.length)}"> ${Math.abs(item.loaded*100/item.length)}% </progress> </td>
+                            <td>${format_rate(item.rate)}</td>
+                            <td>${format_sec(item.left)}</td>
+                            <td>${item.loaded}</td>
+                            <td>${item.length}</td>
+                            <td><button ${item.end ? '' : 'disabled'} onclick="remove('${item.url}')" class="pure-button" >x</button></td>
+                            <td>${item.filename.replace(/^.*\//,'')}</td>
+                            <td>${item.url}</td>
+                        </tr>`)
+                        filesul.innerHTML = lines.join('\n')
+                    }
+                }).catch(msg => {
+                    filesul.innerHTML = msg
+                })
+            }
+            function format_sec(secs) {
+                const date =  new Date(0)
+                date.setSeconds(isNaN(secs) ? 0 : Math.floor(secs))
+                switch(true) {
+                    case secs >= 3600 : return date.toISOString().substr(11, 8) 
+                    case secs >= 60 :  return date.toISOString().substr(14, 5)
+                    default : return date.toISOString().substr(17, 2)+'s'
+                }
+            }
+            function format_rate(rate) {
+                switch(true) {
+                    case rate >= 1024*1024 : return `${Math.floor(rate*100/1024/1024)/100}Mb/s` 
+                    case rate >= 1024 : return `${Math.floor(rate*100/1024)/100}Kb/s` 
+                    default : return `${Math.floor(rate)}b/s`
+                }
+            }
+
+
+            setInterval(refresh,5000)
+        </script>
+    </body>
+</html>
