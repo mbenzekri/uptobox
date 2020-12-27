@@ -1,0 +1,13 @@
+[Unit]
+Description=Uptobox download service
+After=network.target
+
+[Service]
+WorkingDirectory=/jsapp/uptobox
+ExecStart=/usr/local/bin/npm start
+Restart=on-failure
+User=pi
+Environment=
+
+[Install]
+WantedBy=multi-user.target
