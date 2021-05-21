@@ -12,3 +12,15 @@ Simple and that's all it do
 # screenshot
 
 <img src="/site/screenshot.png" alt="site image" style="height: 300px; width:700;"/>
+- copy/past uptobox link in "Download from uptobox" text field 
+- clic "Download" to submit the request
+- download progress is displayed
+
+# install
+
+<pre>
+  mkdir uptobox
+  git clone https://github.com/mbenzekri/uptobox.git uptobox
+  cd uptobox
+  npm install
+</pre>
