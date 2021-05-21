@@ -5,7 +5,9 @@ import https from 'https'
 import express from 'express'
 import body from 'body-parser'
 import fetch from 'node-fetch'
-const destdir = (os.hostname().toUpperCase() === 'MATRIX') ? '/mnt/diskb/video/AVoir' : 'C:/Users/benze/Downloads'
+const destdir = process.env.UPTOBOX_DIR  ? process.env.UPTOBOX_DIR :
+                (os.hostname().toUpperCase() === 'MATRIX') ? '/mnt/diskb/video/AVoir' : 
+                'C:/Users/benze/Downloads'
 const port = process.env.UPTOBOX_PORT 
 const token = process.env.UPTOBOX_TOKEN
 if (token && port) {
