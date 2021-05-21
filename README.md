@@ -24,8 +24,9 @@ open terminal in repo root directory an run
 </pre>
 
 # screenshot
-![app screenshot](/site/screenshot.png  "app screenshot" )
+
 - copy/past uptobox link in "Download from uptobox" text field 
 - clic "Download" to submit the request
 - download progress is displayed
 
+![app screenshot](/site/screenshot.png  "app screenshot" )
