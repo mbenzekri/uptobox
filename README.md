@@ -8,6 +8,20 @@ Downloaded files are directtly downloaded in my 'to see' media server directory.
 Downloaded file are then streamable streamable from my Smart TV, VLC from PCs,phones an tablets.
 
 Simple and that's all it do
+# install
+open terminal in the directory you want to install server
+<pre>
+  mkdir uptobox
+  git clone https://github.com/mbenzekri/uptobox.git uptobox
+  cd uptobox
+  npm install
+</pre>
+
+# run
+open terminal in repo root directory an run
+<pre>
+  node index.js
+</pre>
 
 # screenshot
 ![app screenshot](/site/screenshot.png  "app screenshot" )
@@ -15,11 +29,3 @@ Simple and that's all it do
 - clic "Download" to submit the request
 - download progress is displayed
 
-# install
-
-<pre>
-  mkdir uptobox
-  git clone https://github.com/mbenzekri/uptobox.git uptobox
-  cd uptobox
-  npm install
-</pre>
