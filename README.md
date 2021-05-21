@@ -10,7 +10,7 @@ Downloaded file are then streamable streamable from my Smart TV, VLC from PCs,ph
 Simple and that's all it do
 
 # screenshot
-<img src="/site/screenshot.png" alt="site image" style="height: 300px; width:700;"/>
+<img src="/site/screenshot.png" alt="site image"/>
 
 - copy/past uptobox link in "Download from uptobox" text field 
 - clic "Download" to submit the request
