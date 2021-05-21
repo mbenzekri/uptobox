@@ -11,3 +11,4 @@ Simple and that's all it do
 
 # screenshot
 
+<img src="/site/screenshot.png" alt="site image" style="height: 300px; width:700;"/>
