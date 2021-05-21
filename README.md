@@ -1,4 +1,7 @@
 # uptobox
+
+## description
+
 Uptobox download app for my raspberry pi.
 
 I use my raspberrypi as a media server (using minidlna) to stream videos in my home network.
@@ -8,25 +11,43 @@ Downloaded files are directtly downloaded in my 'to see' media server directory.
 Downloaded file are then streamable streamable from my Smart TV, VLC from PCs,phones an tablets.
 
 Simple and that's all it do
-# install
+
+## install
+
 open terminal in the directory you want to install server
-<pre>
-  mkdir uptobox
-  git clone https://github.com/mbenzekri/uptobox.git uptobox
-  cd uptobox
-  npm install
-</pre>
 
-# run
+```bash
+    mkdir uptobox
+    git clone https://github.com/mbenzekri/uptobox.git uptobox
+    cd uptobox
+    npm install
+```
+
+## configuration
+
+All configuration is done through following environnement variables:
+
+- UPTOBOX_DIR: directory to receive downloaded files
+- UPTOBOX_PORT: port for the server
+- UPTOBOX_TOKEN: uptobox token API
+
+to retreive an uptobox token for API calls goto [uptobox login](https://uptobox.com/my_account "uptobox login") (sign in)
+and clic clipboard near "Token" entry to copy token in your clibboard and set your env var.
+
+## run
+
 open terminal in repo root directory an run
-<pre>
+
+```bash
   node index.js
+```
+
 </pre>
 
-# screenshot
+## screenshot
 
 - copy/past uptobox link in "Download from uptobox" text field 
 - clic "Download" to submit the request
 - download progress is displayed
 
-![app screenshot](/site/screenshot.png  "app screenshot" )
+![app screenshot](./site/screenshot.png  "app screenshot" )
