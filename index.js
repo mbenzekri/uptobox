@@ -7,7 +7,7 @@ import { download,normalizeDl } from './download.js'
 import { files } from './global.js'
 
 const destdir = process.env.UPTOBOX_DIR  ? process.env.UPTOBOX_DIR :
-                (os.hostname().toUpperCase() === 'MATRIX') ? '/mnt/diskd/video/AVoir' : 
+                (os.hostname().toUpperCase() === 'MATRIX') ? '/mnt/diskd/videos/AVoir' : 
                 'C:/Users/benze/Downloads'
 const port = process.env.UPTOBOX_PORT 
 const token = process.env.UPTOBOX_TOKEN
