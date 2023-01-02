@@ -7,7 +7,7 @@
 <body>
     <form class="pure-form" style='padding: 10px; background-color: rgb(224,224,224);'>
         <label for=url>Download from uptobox : </label>
-        <input id=url size=50 type=text onkeyup="msgdiv.innerHTML = ''" onpaste="msgdiv.innerHTML = ''">
+        <input id=url size=50 type=text ondragover="this.value=''" onmouseup="" onkeyup="msgdiv.innerHTML = ''" onpaste="msgdiv.innerHTML = ''" onfocus="this.select();" onclick="this.select();">
         <button id=button onclick="download()" class="pure-button pure-button-primary">Download</button>
         <div id=message></div>
     </form>

@@ -57,7 +57,7 @@ function refresh() {
         } else {
             const lines = datas.map(item => `
                 <tr>
-                    <td><progress max="100" value="${Math.abs(item.loaded * 100 / item.length)}"> ${Math.abs(item.loaded * 100 / item.length)}% </progress> </td>
+                    <td style="text-align:center" ><sub>${Math.floor(item.loaded * 100 / item.length)}%</sub><br><progress max="100" value="${Math.floor(item.loaded * 100 / item.length)}"> ${Math.abs(item.loaded * 100 / item.length)}% </progress></td>
                     <td>${bytesToSize(item.rate)}/s</td>
                     <td>${format_sec(item.left)}</td>
                     <td>${bytesToSize(item.loaded)}</td>
