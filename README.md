@@ -12,6 +12,8 @@ Downloaded file are then streamable streamable from my Smart TV, VLC from PCs,ph
 
 Simple and that's all it do
 
+- Thank's to [Stéphane](https://github.com/nephaste) who compiled this project for Qnap NAS users ou can find it at : [uptobox-apache82](https://www.myqnap.org/product/uptobox-apache82/)
+
 ## install
 
 open terminal in the directory you want to install server
